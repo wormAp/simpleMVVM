@@ -77,7 +77,8 @@ function pathChildren(oldVNode,newVNode) {
 export default function pathSameVNode(oldVNode,newVNode) {
     newVNode.elm = oldVNode.elm;
     if(newVNode.tag === "text"){
-        oldVNode.elm.nodeValue = newVNode.text;
+         if(oldVNode.text !== newVNode.text)
+            oldVNode.elm.nodeValue = newVNode.text;
     }else if(oldVNode.tag === "text" && (oldVNode.children === undefined || oldVNode.children.length==0)){
         let nativeDom = createElement(newVNode);
         oldVNode.elm.parentNode.insertBefore(nativeDom,oldVNode.elm);
